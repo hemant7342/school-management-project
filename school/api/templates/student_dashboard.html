@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 20px;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th {
+            background: #dc3545;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        td {
+            padding: 8px;
+            background: #fff;
+        }
+        tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Dashboard</h2>
+    <p>Welcome, <b>{{ student.name }}</b> (Class: {{ student.class_name }}, Roll No: {{ student.roll_no }})</p>
+
+    <h3>Your Results</h3>
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        {% for r in results %}
+        <tr>
+            <td>{{ r.subject }}</td>
+            <td>{{ r.marks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

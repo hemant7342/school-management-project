@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Principal Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 20px;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th {
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        td {
+            padding: 8px;
+            background: #fff;
+        }
+        tr:nth-child(even) td {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Principal Dashboard</h2>
+
+    <h3>All Teachers</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+        </tr>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.subject }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>All Students</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Roll No</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.class_name }}</td>
+            <td>{{ student.roll_no }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>All Results</h3>
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        {% for r in results %}
+        <tr>
+            <td>{{ r.student.name }}</td>
+            <td>{{ r.subject }}</td>
+            <td>{{ r.marks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
