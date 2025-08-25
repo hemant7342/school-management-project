@@ -1,0 +1,130 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+<style>
+    /* Background */
+    body.login {
+        background: linear-gradient(135deg, #f9fafb, #e3f2fd, #e0c3fc, #8ec5fc);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+    }
+
+    /* Glassmorphism Box */
+    .login-box {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 3rem 2.5rem;
+        width: 380px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        color: #333;
+        animation: fadeIn 1s ease;
+    }
+
+    /* Heading */
+    .login-box h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Labels */
+    .login-box label {
+        display: block;
+        text-align: left;
+        margin: 0.5rem 0 0.3rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #444;
+    }
+
+    /* Inputs */
+    .login-box input {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        outline: none;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+        transition: 0.3s;
+    }
+
+    .login-box input:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 8px rgba(118, 75, 162, 0.3);
+    }
+
+    /* Submit Button */
+    .login-box .submit-row input {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.9rem;
+        border-radius: 12px;
+        cursor: pointer;
+        border: none;
+        transition: 0.3s ease;
+        width: 100%;
+    }
+
+    .login-box .submit-row input:hover {
+        background: linear-gradient(135deg, #764ba2, #667eea);
+        transform: scale(1.03);
+    }
+
+    /* Error Message */
+    .login-box .errornote {
+        background: rgba(255, 77, 79, 0.15);
+        padding: 0.8rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        color: #d93025;
+        font-weight: 500;
+    }
+
+    /* Remove default Django header + breadcrumbs */
+    #header, .breadcrumbs {
+        display: none;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-box">
+    <h1>Admin Login</h1>
+
+    {% if form.errors %}
+        <p class="errornote">⚠️ Invalid username or password</p>
+    {% endif %}
+
+    <form method="post" id="login-form">{% csrf_token %}
+        <label for="id_username">Username</label>
+        {{ form.username }}
+
+        <label for="id_password">Password</label>
+        {{ form.password }}
+
+        <div class="submit-row">
+            <input type="submit" value="Log In">
+        </div>
+    </form>
+</div>
+{% endblock %}
