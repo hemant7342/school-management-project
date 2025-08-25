@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | My Custom Admin
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}" style="color:#fff; text-decoration:none;">
+            🚀 My School Admin
+        </a>
+    </h1>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}">
+{% endblock %}
+
+{% block nav-global %}
+    <div style="margin-right:20px;">
+        <a href="/" style="color:#fff; font-weight:bold;">🏠 Back to Site</a>
+    </div>
+{% endblock %}
